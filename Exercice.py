@@ -31,3 +31,6 @@ print(result_7)
 #8. Use the negation operator to make the number 12 negative.
 result_8 = -12
 print(result_8)
+
+fruit = (banana, apple, orange )
+print = (fruit [2])
