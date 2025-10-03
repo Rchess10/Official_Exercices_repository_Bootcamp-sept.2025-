@@ -32,5 +32,5 @@ print(result_7)
 result_8 = -12
 print(result_8)
 
-fruit = (banana, apple, orange )
+fruit = ("banana", "apple", "orange" )
 print = (fruit [2])
