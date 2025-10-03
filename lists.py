@@ -10,3 +10,10 @@ number_set = {5, 10, 15, 20}
 number_list = list(number_set)
 print("Last element:", number_list[-0])  # Print the last index of the list converted from set
 
+Users_details = {
+    "name": "Alice",
+    "age": 45,
+    "living_location": "New-York"
+}
+
+print(f"{Users_details['name']} is {Users_details['age']} years old and lives in {Users_details['living_location']}.")

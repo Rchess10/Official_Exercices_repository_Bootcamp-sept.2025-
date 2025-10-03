@@ -34,6 +34,7 @@ print (new_string)  # Output: Jython
 name_new = "Alice"
 age_new = 30 
 greeting = f"my name is {name_new} and I am {age_new} years old."
-print
+print(greeting)
+star_wars_characters = ("Luke", "Leia", "Han", "Yoda", "Vader")
+print(star_wars_characters[2])  # Affiche le troisième nom
 
-kskdgdidggdydddvdvddludvduyvd
