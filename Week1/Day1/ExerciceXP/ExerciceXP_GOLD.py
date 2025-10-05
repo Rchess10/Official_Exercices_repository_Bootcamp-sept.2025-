@@ -11,5 +11,13 @@
 # print(f"The season is {season}.")
 
 #Exercise 2: For Loop
-for i in range(1, 20): 
+for i in range(1, 21): 
     print (i)
+
+numbers = list(range(1, 21))
+for index, value in enumerate(numbers):
+    if index % 2 == 0:
+        print(value) 
+
+#Exercise 3: While Loop
+
