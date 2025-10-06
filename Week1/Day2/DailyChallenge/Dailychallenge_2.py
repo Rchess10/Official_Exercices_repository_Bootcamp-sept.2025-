@@ -37,7 +37,6 @@ for col in range(num_cols):
 print(message)
 
 decoded = ""
-print(type(decoded))
 previous_is_alpha = False
 
 for char in message:
@@ -49,17 +48,26 @@ for char in message:
     else:
         previous_is_alpha = False
 
+
 print(decoded.strip())
 
-# matrix = [
-#     ['7', 'i', 'i'],
-#     ['T', 's', 'x'],
-#     ['h', '%', '?'],
-#     ['i', ' ', '#'],
-#     ['s', 'M', ' '],
-#     ['$', 'a', ' '],
-#     ['#', 't', '%'],
-#     ['^', 'r', '!']
-# ]
+# #char.isalpha() : Vrai si le caractère courant est une lettre, Faux sinon.
+# not previous_is_alpha : Vrai si le caractère précédent n’était pas une lettre, Faux si c’était une lettre.
+# decoded : Vrai si la chaîne decoded n’est pas vide, Faux si elle est vide.
+# decoded[-1] != " " : Vrai si le dernier caractère de decoded n’est pas un espace, Faux si c’est un espace.
 
-# rows = matrix_str.split('\n')
+# Cycle :
+
+# 1er tour : char = '7' → pas une lettre → previous_is_alpha = False
+# 2e tour : char = 'T' → lettre, previous_is_alpha = False, decoded vide → on ajoute 'T', previous_is_alpha = True
+# 3e tour : char = 'h' → lettre, previous_is_alpha = True → on ajoute 'h'
+# 4e tour : char = 'i' → lettre, previous_is_alpha = True → on ajoute 'i'
+# 5e tour : char = 's' → lettre, previous_is_alpha = True → on ajoute 's'
+# 6e tour : char = '$' → pas une lettre → previous_is_alpha = False
+# 7e tour : char = '#' → pas une lettre → previous_is_alpha = False
+# 8e tour : char = '^' → pas une lettre → previous_is_alpha = False
+# 9e tour : char = 'i' → lettre, previous_is_alpha = False, decoded = 'This', decoded[-1] != ' ' → on ajoute un espace, puis 'i', previous_is_alpha = True
+# 10e tour : char = 's' → lettre, previous_is_alpha = True → on ajoute 's'
+# ... etc.
+# À chaque fois qu’on passe d’un symbole à une lettre, on ajoute un espace (sauf au début).
+
