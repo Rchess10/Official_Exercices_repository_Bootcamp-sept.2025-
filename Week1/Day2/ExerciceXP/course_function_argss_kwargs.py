@@ -1,24 +1,24 @@
-# # ------------------------------
-# # Cours : Fonctions, *args et **kwargs en Python
-# # ------------------------------
+# ------------------------------
+# Cours : Fonctions, *args et **kwargs en Python
+# ------------------------------
 
-# # Introduction :
-# # Une fonction est un bloc de code réutilisable qui s'exécute lorsqu'on l'appelle.
-# # Les fonctions permettent de structurer, simplifier et réutiliser le code.
+# Introduction :
+# Une fonction est un bloc de code réutilisable qui s'exécute lorsqu'on l'appelle.
+# Les fonctions permettent de structurer, simplifier et réutiliser le code.
 
-# # Syntaxe de base
-# def say_hello():
-#     """Une fonction qui affiche Hello!"""
-#     print("Hello!")
+# Syntaxe de base
+def say_hello():
+    """Une fonction qui affiche Hello!"""
+    print("Hello!")
 
-# say_hello()  # Affiche Hello!
+say_hello()  # Affiche Hello!
 
-# # Définition et appel de fonction avec paramètres
-# def say_hello(username):
-#     print("Hello " + username)
+# Définition et appel de fonction avec paramètres
+def say_hello(username):
+    print("Hello " + username)
 
-# say_hello("Rick")   # Hello Rick
-# say_hello("Morty")  # Hello Morty
+say_hello("Rick")   # Hello Rick
+say_hello("Morty")  # Hello Morty
 
 # Plusieurs arguments (arguments positionnels)
 def say_hello(username, language):
@@ -29,7 +29,7 @@ def say_hello(username, language):
     else:
         print("Langue non supportée : " + language)
 
-say_hello("Rick", "IT")  # Bonjour Rick
+say_hello("Rick", "FR")  # Bonjour Rick
 
 # Arguments nommés (keyword arguments)
 say_hello(username="Rick", language="FR")
@@ -59,6 +59,7 @@ def number_by_three(name, day):
     sentence = f'Hello {name}! Today is {day}.'
     print(sentence)
 
+number_by_three ("Romain","Wednesday")
 # print(day)  # NameError: day n'est pas défini ici (portée locale)
 
 name = 'Avner'
@@ -80,7 +81,7 @@ def divide_by_three(number):
     return number / 3
 
 print(divide_by_three(12))  # 4.0
-print(divide_by_three(27))  # 9.0
+print(divide_by_three(16))  # 9.0
 
 # Retourner plusieurs valeurs avec un tuple
 def format_name(first_name, last_name):
