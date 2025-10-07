@@ -132,3 +132,4 @@ for index_count, letter in enumerate('abcd'):
 # A l'index 2 la lettre est c
 # A l'index 3 la lettre est d
 # Chaque ligne affiche l’index et la lettre correspondante, grâce à la méthode .format().
+

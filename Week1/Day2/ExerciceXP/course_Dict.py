@@ -136,3 +136,26 @@ print(sample_dict)  # Affiche {'age': 25, 'city': 'New york'}
 # Conclusion:
 # Les dictionnaires sont essentiels pour manipuler efficacement des données en Python.
 # Ils sont utilisés dans l'analyse de données, le développement web, et partout où un accès rapide à des valeurs est nécessaire.
+
+def get_nested(d, keys, default=None):
+    for k in keys:
+        d = d.get(k, {})
+    return d if d != {} else default
+
+# Exemple d'utilisation :
+sample_dict = {
+    "class": {
+        "student": {
+            "name": "Mike",
+            "marks": {
+                "physics": 70,
+                "history": 80
+            }
+        }
+    }
+}
+
+# Pour accéder à la valeur de 'history'
+result = get_nested(sample_dict, ["class", "student", "marks", "history"])
+print(result)  # Affiche 80
+
