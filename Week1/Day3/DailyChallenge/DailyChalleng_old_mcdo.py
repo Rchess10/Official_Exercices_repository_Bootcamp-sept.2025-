@@ -40,7 +40,8 @@ laferme.animal_add("cow", 4)
 
 print(laferme.get_info())
 print(laferme.animal)
-
+print(laferme.get_animal_types())
+print(laferme.get_short_info())
 
 
 
