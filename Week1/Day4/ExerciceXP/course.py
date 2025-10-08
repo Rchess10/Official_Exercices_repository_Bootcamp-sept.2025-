@@ -141,7 +141,7 @@
 
 ############################################################
 
-from faker import Faker
-fake = Faker()
-print(fake.date())
+# from faker import Faker
+# fake = Faker()
+# print(fake.date())
 
