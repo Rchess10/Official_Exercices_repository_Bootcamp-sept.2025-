@@ -1,3 +1,39 @@
+from game import Game
+
+
+def get_user_menu_choice():
+    choice = input("Menu:\n(g) Play a new game\n(x) Show scores & exit\nEnter your choice: ").strip().lower()
+    if choice in {"g", "x"}:
+        return choice
+    return None
+
+
+def print_results(results):
+    print("Game Results:")
+    print(f"You won: {results.get('win', 0)} times")
+    print(f"You lost: {results.get('loss', 0)} times")
+    print(f"Draws: {results.get('draw', 0)} times")
+
+
+def main():
+    game = Game()
+    results = {"win": 0, "loss": 0, "draw": 0}
+
+    while True:
+        choice = get_user_menu_choice()
+        if choice is None:
+            print("Invalid choice. Please try again.")
+            continue
+        if choice == "g":
+            result = game.play()
+            results[result] += 1
+        elif choice == "x":
+            print_results(results)
+            break
+
+
+if __name__ == "__main__":
+    main()
 import random
 
 class Game:
@@ -36,40 +72,4 @@ class Game:
         print(f"You selected {user}. The computer selected {computer}. {outcome_msg}")
         return result
     
-    from game import Game
-
-def get_user_menu_choice():
-        print("\nMenu:")
-        print("  p - Play a new game")
-        print("  s - Show scores")
-        print("  q - Quit")
-        choice = input("Choose (p/s/q): ").strip().lower()
-        return choice if choice in ("p", "s", "q") else None
-
-def print_results(results):
-        print("\n--- Game summary ---")
-        print(f"Wins : {results.get('win', 0)}")
-        print(f"Losses: {results.get('loss', 0)}")
-        print(f"Draws : {results.get('draw', 0)}")
-        print("Thanks for playing!")
-
-def main():
-        results = {"win": 0, "loss": 0, "draw": 0}
-        while True:
-            choice = get_user_menu_choice()
-            if choice is None:
-                print("Invalid menu choice.")
-                continue
-            if choice == "p":
-                game = Game()
-                res = game.play()
-                if res in results:
-                    results[res] += 1
-            elif choice == "s":
-                print_results(results)
-            elif choice == "q":
-                print_results(results)
-                break
-
-if __name__ == "__main__":
-    main()
+    
