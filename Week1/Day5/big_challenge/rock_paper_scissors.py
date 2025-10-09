@@ -1,31 +1,27 @@
 import random
 
-class Game: 
-    def __init__(self, items = None):
+class Game:
+    def __init__(self, items=None):
         if items is None:
-            items = ["rock","paper","scissors"]
+            items = ["rock", "paper", "scissors"]
         self.items = list(items)
-    
+
     def get_user_item(self):
         prompt = f"Choose one of {', '.join(self.items)}: "
         while True:
             choice = input(prompt).strip().lower()
             if choice in self.items:
-                print(choice)
                 return choice
-            print("Choix invalide, réessaie.")
-    
+            print("Invalid choice, try again.")
+
     def get_computer_item(self):
         return random.choice(self.items)
 
-    def get_game_result(self,user_item,computer_item):
-        if computer_item == user_item:
+    def get_game_result(self, user_item, computer_item):
+        if user_item == computer_item:
             return "draw"
-        wins = {("rocks","scissors"),("scissors","paper"),("paper","rock")}
-        if (user_item,computer_item) in wins:
-            return "win" if (user_item,computer_item) in wins else "lose"
-        return "lose"
-    
+        wins = {("rock", "scissors"), ("scissors", "paper"), ("paper", "rock")}
+        return "win" if (user_item, computer_item) in wins else "loss"
 
     def play(self):
         user = self.get_user_item()
@@ -39,8 +35,41 @@ class Game:
             outcome_msg = "It's a draw."
         print(f"You selected {user}. The computer selected {computer}. {outcome_msg}")
         return result
+    
+    from game import Game
 
-game = Game()
-game.get_user_item()
-game.get_computer_item()
-game.get_game_result(1,"rock")
+def get_user_menu_choice():
+        print("\nMenu:")
+        print("  p - Play a new game")
+        print("  s - Show scores")
+        print("  q - Quit")
+        choice = input("Choose (p/s/q): ").strip().lower()
+        return choice if choice in ("p", "s", "q") else None
+
+def print_results(results):
+        print("\n--- Game summary ---")
+        print(f"Wins : {results.get('win', 0)}")
+        print(f"Losses: {results.get('loss', 0)}")
+        print(f"Draws : {results.get('draw', 0)}")
+        print("Thanks for playing!")
+
+def main():
+        results = {"win": 0, "loss": 0, "draw": 0}
+        while True:
+            choice = get_user_menu_choice()
+            if choice is None:
+                print("Invalid menu choice.")
+                continue
+            if choice == "p":
+                game = Game()
+                res = game.play()
+                if res in results:
+                    results[res] += 1
+            elif choice == "s":
+                print_results(results)
+            elif choice == "q":
+                print_results(results)
+                break
+
+if __name__ == "__main__":
+    main()

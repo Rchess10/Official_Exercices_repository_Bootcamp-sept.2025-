@@ -1,162 +1,77 @@
-#Exercice1 Pets 
+import math
+from functools import total_ordering
 
-class Pets():
-    def __init__(self, animals):
-        self.animals = animals
-
-    def walk(self):
-        for animal in self.animals:
-            print(animal.walk())
-
-class Cat():
-    is_lazy = True
-
-    def __init__(self, name, age):
-        self.name = name
-        self.age = age
-
-    def walk(self):
-        return f'{self.name} is just walking around'
-    
-class Siamese(Cat):
-    def __init__(self, name, age):
-        super().__init__(name,age)
-        self.breed = "Siamese"
-        print(f'my cat is named {name} and his age is {age}, his race is {self.breed}')
-
-class Bengal(Cat):
-    def sing(self, sounds):
-        return f'{sounds}'
-
-class Chartreux(Cat):
-    def sing(self, sounds):
-        return f'{sounds}'
-
-siam = Siamese("Bengo", 17)
-bengal = Bengal("Milo", 3)
-chartreux = Chartreux("Luna", 4)
-
-all_cats = [siam, bengal, chartreux]
-
-print(bengal.name)
-print(chartreux.sing("miaouuuuu"))
-print(list(all_cats))
-
-sara_pets = Pets(all_cats)
-sara_pets.walk()
-
-
-# Exercice2 Dogs
-
-import random
-class Dog():
-
-    def __init__(self, name, age, weight):
-        self.name = name 
-        self.age = age 
-        self.weight = weight
-
-    def bark(self):
-        return "is barking"
-    
-    def run_speed(self):
-        return self.weight / self.age * 10
-    
-    def fight(self, other_dog):
-        self_fight_score = self.weight * self.run_speed()
-        other_dog_fight_score = other_dog.weight * other_dog.run_speed()
-
-        if  self_fight_score > other_dog_fight_score:
-             return f"{self.name} has won the fight"
-        else: 
-             return f"{other_dog.name} has won the fght"
-        
-dog1 = Dog("Rex", 5, 20)
-dog2 = Dog("Buddy", 3, 15)
-dog3 = Dog("Luna", 4, 18)
-
-print(str(dog1.run_speed))
-print(dog1.fight(dog2))
-print(dog1.fight(dog3))
-
-
-
-class Petdog(Dog):
-    def __init__(self, name, age, weight, trained = False):
-        super().__init__(name,age,weight)
-        self.trained = trained
-    
-    def train(self):
-        print(self.bark())
-        self.trained = True
-
-    def play_tog(self, *dogs):
-        print(f"{dogs} all play together")
-
-    def rand_tricks(self):
-        self.tricks = ["does a barrel roll", "stands on his back legs", "shakes your hand", "plays dead"]
-        if self.trained: # Pas besoin de == True, 'if' suffit pour les booléens
-            # <--- CORRECTION MAJEURE ICI
-            chosen_trick = random.choice(self.tricks)
-            print(f"{self.name} {chosen_trick}!") # L'énoncé semblait attendre "do a [trick]", donc j'ai ajusté
-
+@total_ordering
+class Circle:
+    def __init__(self, radius=None, diameter=None):
+        if radius is None and diameter is None:
+            raise ValueError("Either radius or diameter must be provided.")
+        if radius is not None:
+            self._radius = float(radius)
         else:
-            print(f"{self.name} does nothing because not trained")
+            self._radius = float(diameter) / 2.0
 
-        
-p = Petdog("Max", 2, 10)
-ap = Petdog("Loris", 3, 15)
-p.train()
-print(p.trained)
-p.play_tog(p,ap)
-p.rand_tricks()
+    @property
+    def radius(self):
+        return self._radius
 
-#Exercie 4
-class Person():
-    def __init__(self, first_name, last_name, age):
-        self.first_name = first_name 
-        self.last_name = last_name
-        self.age = age
+    @radius.setter
+    def radius(self, value):
+        self._radius = float(value)
 
-    def is_18(self):
-        if self.age > 18:
-            print("ouf, je le savais")
-            return True
-        else: 
-            print("oh merde")
-            return False
+    @property
+    def diameter(self):
+        return self._radius * 2
 
-class Family:
-    def __init__(self, last_name):
-        self.last_name = last_name
-        self.members = []
+    @diameter.setter
+    def diameter(self, value):
+        self._radius = float(value) / 2.0
 
-    def born(self, first_name, age):
-        new_person = Person(first_name, self.last_name, age)
-        self.members.append(new_person)
-        return new_person
+    @property
+    def area(self):
+        return math.pi * (self._radius ** 2)
 
-    def check_majority(self, first_name):
-        for member in self.members:
-            if member.first_name == first_name:
-                if member.is_18():            
-                    print("You are over 18, your parents accept that you will go out with your friends")
-                else:
-                    print("Sorry, you are not allowed to go out with your friends.")
-                return
-        print(f"No member named {first_name} found.")
+    def __str__(self):
+        return f"Circle(radius={self._radius:.3f}, diameter={self.diameter:.3f})"
 
-    def family_presentation(self):
-        print(f"Family {self.last_name}:")
-        for m in self.members:
-            print(f"- {m.first_name}, {m.age} years old")
+    def __repr__(self):
+        return f"Circle(radius={self._radius!r})"
+
+    def __add__(self, other):
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return Circle(radius=self._radius + other._radius)
+
+    def __eq__(self, other):
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return math.isclose(self._radius, other._radius, rel_tol=1e-9)
+
+    def __lt__(self, other):
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self._radius < other._radius
 
 
+if __name__ == "__main__":
+    # exemples d'utilisation (partie "main" — commentaires succincts pour expliquer)
+    c1 = Circle(radius=2)          # cercle avec rayon 2
+    c2 = Circle(diameter=6)        # cercle avec diamètre 6 -> rayon 3
+    c3 = Circle(radius=2)          # même rayon que c1
 
+    print(c1)                      # affiche les attributs du cercle
+    print(f"area c2: {c2.area:.3f}")  # affiche l'aire
 
+    # addition : crée un nouveau cercle dont le rayon est la somme des rayons
+    c_sum = c1 + c2
+    print("c1 + c2 ->", c_sum)
 
-makao = Person("Romain", "Vautey", 17)
-makao.is_18()
-malinoi = Person("Lara","Stauffer", 24)
+    # comparaisons
+    print("c1 == c3 ?", c1 == c3)  # True
+    print("c1 < c2 ?", c1 < c2)    # True
 
-
+    # tri d'une liste de cercles
+    circles = [c2, c_sum, c1, c3]
+    circles.sort()
+    # affiche la liste triée du plus petit au plus grand (par rayon)
+    print("sorted radii:", [c.radius for c in circles])
