@@ -1,0 +1,8 @@
+Example run capture (expected output)
+
+Resources URIs: ['greeting://hello']
+Tools names: ['add']
+Greeting content: Hello, hello!
+add(1, 7) result (structured): 8
+
+Note: If you see "Connection closed" run `mcp run server.py` in a separate terminal to view server startup errors.
