@@ -1,0 +1,52 @@
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/app.py
+suggestions for improvement:
+- Consider adding more specific error handling for different types of exceptions that might occur during agent execution.
+- Implement input validation to prevent potential injection attacks in the user goal text area.
+- For enhanced observability, consider storing the tool call logs in a persistent storage for later analysis.
+Correctness: 100%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/config.py
+suggestions for improvement:
+- The code provides configuration loading for LLMs and MCP servers, which is a good start. However, it doesn't include the core logic for the agent, LLM orchestration, error handling, observability, or Streamlit integration.
+- The code does not address planning - the LLM should choose the order of tool calls (not fully hard-coded).
+- The code needs to handle timeouts/bad inputs with retries or fallback steps for error handling.
+- Observability is not implemented, the code should log each tool call (inputs/outputs summarized; no secrets).
+- The code provides env-based setup for LLM backend (Groq or Ollama) and server endpoints, which is good.
+Correctness: 60%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/llm_client.py
+suggestions for improvement:
+- The code only implements the LLM client functionality, but the task requires integrating at least two third-party MCP servers, running them locally, and using the LLM to orchestrate tool calls to achieve a user goal. This core requirement is missing.
+- The code lacks the error handling (timeouts/bad inputs with retries or fallback steps), observability (logging each tool call), configuration (env-based setup for server endpoints), and reproducibility (simple startup) aspects as mentioned in the functional requirements.
+- The code does not demonstrate the use of Streamlit for building UI components.
+Correctness: 30%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/mcp_multi_client.py
+suggestions for improvement:
+- The code provides a good foundation for integrating multiple MCP servers, but it needs to be integrated with the LLM orchestration and error handling as described in the task description. It initializes and discovers tools but doesn't yet demonstrate the LLM planning and execution part, which is a core requirement.
+- The code should include specific error handling for tool calls (timeouts, bad inputs) and implement retries or fallback mechanisms. Currently, errors during tool execution might not be handled gracefully.
+- The code uses configuration but doesn't fully elaborate on how to switch between GroqCloud and Ollama or how to configure server endpoints via environment variables.
+- The prompt mentions logging tool calls. Implement a logging mechanism (e.g., using the `logging` module) to record tool inputs and outputs (excluding secrets) for observability.
+- Add a `config.py` or similar mechanism to load `MCPServerConfig` from env.
+Correctness: 60%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/my_mcp_server.py
+suggestions for improvement:
+- The code defines a single MCP server with two tools. It does not integrate any third-party MCP servers as required by the prompt.
+- The code lacks the LLM-driven client orchestration that is essential for the mini-project.
+- The code lacks the environment configuration (Groq or Ollama).
+- The code is missing the Streamlit integration.
+Correctness: 20%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/orchestrator.py
+suggestions for improvement:
+- The code needs to explicitly show how at least two third-party MCP servers are integrated. The current implementation uses config files (load_mcp_server_configs) which is good, but the server setup part is not visible.
+- The code should ideally include a Streamlit implementation, as suggested. This involves setting up a Streamlit app and integrating the orchestrator within it.
+- Consider adding more detailed logging or observability features, especially regarding latency and resource usage of the individual tool calls.
+Correctness: 75%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/requirements.txt
+suggestions for improvement:
+- Skipping file (too many comments or blank lines).
+Correctness: N/A%
+-----
