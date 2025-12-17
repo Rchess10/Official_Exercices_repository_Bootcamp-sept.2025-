@@ -1,0 +1,46 @@
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/app.py
+suggestions for improvement:
+- The code only provides a Streamlit interface and doesn't include the implementation of the MCP server with custom tools or the agent's planning logic.
+- The `run_agent_sync` function is called but not defined in the provided code.
+Correctness: 0%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/config.py
+suggestions for improvement:
+- Consider adding more specific error handling or logging for debugging purposes.
+- The code could be made more flexible by allowing the user to specify the number of MCP servers to load dynamically, rather than hardcoding the assumption of needing 'files' and 'web'.
+- Abstract the MCP server loading logic into a loop to reduce redundancy and improve maintainability.
+Correctness: 75%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/llm_client.py
+suggestions for improvement:
+- This code focuses on the LLM client, which is only one component of the overall project. To fully address the prompt, you should include the MCP server with custom tools, the agentic client that discovers and uses these tools along with external ones, and the overall orchestration logic.
+- The code lacks integration with the custom MCP server and external servers from Part 1, making it difficult to assess how it contributes to the overall goal of extending the previous assignment.
+Correctness: 0%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/mcp_multi_client.py
+suggestions for improvement:
+- The code does not implement the core requirements of the mini-project, specifically creating and exposing a custom MCP server with at least one custom tool. It primarily focuses on interacting with existing MCP servers and building an LLM tool specification.
+- The code lacks the server-side implementation of MCP, focusing solely on the client aspect.
+- There is no code related to creating the agentic client, discovering tools from both the local and external servers, planning multi-step calls, and producing an end-to-end outcome.
+Correctness: 0%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/my_mcp_server.py
+suggestions for improvement:
+- The code fulfills the requirement of creating a custom MCP server with two tools and defining clear schemas. However, the crucial aspect of composing this server with external MCP servers and creating an agentic client is missing. The code only defines the server-side tools.
+- To fully address the prompt, an agentic client component needs to be implemented. This component should discover tools from the custom server as well as external servers (as done in Part 1), then use an LLM (GroqCloud or Ollama) to plan and execute multi-step calls across these tools.
+- Error handling can be improved in the tool functions to provide more informative error messages to the client.
+Correctness: 75%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/orchestrator.py
+suggestions for improvement:
+- The code implements an agentic orchestrator that interacts with tools, which is a good start. However, it's missing the crucial part of creating and exposing **your own MCP server** with custom tools, as requested in the chapter content. The code focuses on the client side and assumes the existence of `local_insights` server, but doesn't show how to create it.
+- The code uses `MCPMultiClient` and tool descriptions, which is relevant to the requirement of composing different servers, but this composition is not explicitly demonstrated.  It needs to show that `MCPMultiClient` includes at least two servers from Part 1 *and* the server created in this part.
+- The code includes robust error handling and re-planning logic, which satisfies the planning and robustness requirements.
+- Consider adding more comments to explain complex logic.
+Correctness: 50%
+-----
+URL: https://github.com/Rchess10/Official_Exercices_repository_Bootcamp-sept.2025-/blob/main/Week09/Day4/Exercise/requirements.txt
+suggestions for improvement:
+- Skipping file (too many comments or blank lines).
+Correctness: N/A%
+-----
